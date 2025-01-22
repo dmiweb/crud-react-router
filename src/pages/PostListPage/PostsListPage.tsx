@@ -6,17 +6,22 @@ import { Loading, ErrorMessage, WidgetAddPost, ButtonShowAddForm, PostList } fro
 const PostListPage = () => {
   const url = import.meta.env.VITE_POSTS_URL;
   const [fetchTrigget, setFetchTrigger] = useState<boolean>(false);
+  const [view, seView] = useState<boolean>(false);
+
 
   const [{ data: posts, loading, error }] = useFetchData(url, {}, fetchTrigget);
 
   const postsData = posts as TPost[];
 
   useEffect(() => {
-    if (!postsData.length) {
+    if (!postsData[0]) {
       setFetchTrigger(true)
-    } else {
-      setFetchTrigger(false)
-    }
+    } 
+
+    if (postsData[0]) {
+      setFetchTrigger(true)
+      seView(true)
+    } 
   }, [postsData]);
 
   return (
@@ -26,7 +31,7 @@ const PostListPage = () => {
       </WidgetAddPost>
       {loading && <Loading />}
       {error && <ErrorMessage error={error} />}
-      {postsData ? <PostList posts={postsData} /> : null}
+      {view ? <PostList posts={postsData} /> : null}
     </>
   );
 };
