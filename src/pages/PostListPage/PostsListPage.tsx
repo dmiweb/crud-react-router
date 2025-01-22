@@ -1,4 +1,4 @@
-// import { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { TPost } from "../../models";
 import { useFetchData } from "../../hooks/useFetchData";
 import { Loading, ErrorMessage, WidgetAddPost, ButtonShowAddForm, PostList } from "../../components";
@@ -6,13 +6,15 @@ import { useLocation } from "react-router-dom";
 
 const PostListPage = () => {
   const url = import.meta.env.VITE_POSTS_URL;
-  // const [fetchTrigget, setFetchTrigger] = useState<number>(0);
+  const [request, setRequest] = useState<string | null>(null);
   // const [view, seView] = useState<boolean>(false);
-
   const { state } = useLocation();
-  console.log(state.send)
+  
+  useEffect(() => {
+    if(state) setRequest(state.send);
+  });
 
-  const [{ data: posts, loading, error }] = useFetchData(state.send && url);
+  const [{ data: posts, loading, error }] = useFetchData(request && url);
 
   const postsData = posts as TPost[];
 
