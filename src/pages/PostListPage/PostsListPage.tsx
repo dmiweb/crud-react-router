@@ -9,10 +9,10 @@ const PostListPage = () => {
   // const [fetchTrigget, setFetchTrigger] = useState<number>(0);
   // const [view, seView] = useState<boolean>(false);
 
-const location = useLocation();
-console.log(location)
+  const { state } = useLocation();
+  console.log(state.send)
 
-  const [{ data: posts, loading, error }] = useFetchData(url);
+  const [{ data: posts, loading, error }] = useFetchData(state.send && url);
 
   const postsData = posts as TPost[];
 
