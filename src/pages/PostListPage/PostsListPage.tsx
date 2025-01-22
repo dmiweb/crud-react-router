@@ -2,12 +2,15 @@
 import { TPost } from "../../models";
 import { useFetchData } from "../../hooks/useFetchData";
 import { Loading, ErrorMessage, WidgetAddPost, ButtonShowAddForm, PostList } from "../../components";
+import { useLocation } from "react-router-dom";
 
 const PostListPage = () => {
   const url = import.meta.env.VITE_POSTS_URL;
   // const [fetchTrigget, setFetchTrigger] = useState<number>(0);
   // const [view, seView] = useState<boolean>(false);
 
+const location = useLocation();
+console.log(location)
 
   const [{ data: posts, loading, error }] = useFetchData(url);
 
