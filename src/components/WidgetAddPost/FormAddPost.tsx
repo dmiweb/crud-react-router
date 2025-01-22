@@ -19,7 +19,7 @@ const FormAddPost = () => {
     if (text) localStorage.setItem('save-form-add-post', text);
   }, [text]);
 
-  const [{ data, loading }] = useFetchData(
+  const [{ loading }] = useFetchData(
     newPost ? import.meta.env.VITE_POSTS_URL : null,
     {
       method: 'POST',
@@ -27,8 +27,6 @@ const FormAddPost = () => {
       body: JSON.stringify(newPost),
     }
   );
-
-  console.log(data)
 
   const onTextChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = event.currentTarget.value
