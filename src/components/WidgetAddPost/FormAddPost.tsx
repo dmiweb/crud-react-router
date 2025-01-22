@@ -49,7 +49,7 @@ const FormAddPost = () => {
   }
 
   useEffect(() => {
-    if (newPost && !loading) navigate('/', { replace: true });
+    if (!loading && newPost) navigate('/', { replace: true });
   }, [loading, newPost, navigate]);
 
   return (
