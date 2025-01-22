@@ -5,7 +5,7 @@ import { Loading, ErrorMessage, WidgetAddPost, ButtonShowAddForm, PostList } fro
 
 const PostListPage = () => {
   const url = import.meta.env.VITE_POSTS_URL;
-  const [fetchTrigget, setFetchTrigger] = useState<boolean>(false);
+  const [fetchTrigget, setFetchTrigger] = useState<boolean | null>(null);
   const [view, seView] = useState<boolean>(false);
 
 
@@ -14,12 +14,12 @@ const PostListPage = () => {
   const postsData = posts as TPost[];
 
   useEffect(() => {
-    if (!postsData[0]) {
+    if (!postsData) {
       setFetchTrigger(true)
     } 
 
-    if (postsData[0]) {
-      setFetchTrigger(true)
+    if (postsData) {
+      setFetchTrigger(null)
       seView(true)
     } 
   }, [postsData]);
