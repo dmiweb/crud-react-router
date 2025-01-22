@@ -1,0 +1,34 @@
+.emoji-btn {
+  position: absolute;
+  right: 10px;
+  bottom: 8px;
+  width: 18px;
+  height: 18px;
+  border: 1px solid #ccccce;
+  border-radius: 50%;
+  background-color: #f3f3f3;
+  cursor: pointer;
+}
+
+.eyes {
+  display: flex;
+  justify-content: center;
+  gap: 3px;
+}
+
+.left-eye, .right-eye {
+  padding-bottom: 5px;
+  font-size: 1rem;
+  line-height: 0.3;
+  font-weight: 600;
+  color: #ccccce;
+}
+
+.mouth {
+  width: 10px;
+  height: 3px;
+  margin: 0 auto;
+  border: 1px solid #ccccce;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
