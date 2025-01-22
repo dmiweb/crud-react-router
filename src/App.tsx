@@ -8,9 +8,9 @@ function App() {
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<PostListPage />} />
-        <Route path="/posts/new" element={<AddPostPage />} />
-        <Route path="/posts/:id" element={<PostPage />} />
-        <Route path="/posts/edit/:id" element={<EditPostPage />} />
+        <Route path="posts/new" element={<AddPostPage />} />
+        <Route path="posts/:id" element={<PostPage />} />
+        <Route path="posts/edit/:id" element={<EditPostPage />} />
       </Route>
     </Routes>
   )
