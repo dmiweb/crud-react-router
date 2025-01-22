@@ -45,7 +45,7 @@ export const useFetchData = (url: string | null, opts = {}, trigger?: string | n
     fetchData();
 
     return () => {
-      if (!Object.keys(opts).length) abortController.abort();
+      if (!Object.keys(opts).length || !trigger) abortController.abort();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [url, trigger]);
