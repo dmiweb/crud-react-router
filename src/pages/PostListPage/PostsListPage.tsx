@@ -14,11 +14,13 @@ const PostListPage = () => {
   const postsData = posts as TPost[];
 
   useEffect(() => {
-    if (!postsData) {
+    if (!postsData.length) {
+      console.log('Нет длины')
       setFetchTrigger(true)
     } 
 
-    if (postsData) {
+    if (postsData.length) {
+      console.log('Есть длина')
       setFetchTrigger(null)
       seView(true)
     } 
