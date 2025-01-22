@@ -33,7 +33,7 @@ const PostListPage = () => {
       </WidgetAddPost>
       {loading && <Loading />}
       {error && <ErrorMessage error={error} />}
-      {!loading && !error ? <PostList posts={postsData} /> : null}
+      {postsData ? <PostList posts={postsData} /> : null}
     </>
   );
 };
