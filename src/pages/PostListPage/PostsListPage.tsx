@@ -7,7 +7,7 @@ const PostListPage = () => {
   
   const [{ data: posts, loading, error }] = useFetchData(url);
 
-  const postsData: TPost[] = posts as TPost[];
+  const postsData = posts as TPost[];
 
   return (
     <>
@@ -16,7 +16,7 @@ const PostListPage = () => {
       </WidgetAddPost>
       {loading && <Loading />}
       {error && <ErrorMessage error={error} />}
-      {posts && <PostList posts={postsData} />}
+      {postsData?.length && <PostList posts={postsData} />}
     </>
   );
 };
