@@ -7,7 +7,7 @@ type FetchResult = {
   error: string | null,
 };
 
-export const useFetchData = (url: string | null, opts = {}): [FetchResult] => {
+export const useFetchData = (url: string | null, opts = {}, trigger?: boolean): [FetchResult] => {
   const [data, setData] = useState<TPost | TPost[] | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
@@ -48,7 +48,7 @@ export const useFetchData = (url: string | null, opts = {}): [FetchResult] => {
       if (!Object.keys(opts).length) abortController.abort();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [url]);
+  }, [url, trigger]);
 
   return [{ data, loading, error }];
 };
