@@ -19,7 +19,7 @@ const FormAddPost = () => {
     if (text) localStorage.setItem('save-form-add-post', text);
   }, [text]);
 
-  const [{ loading }] = useFetchData(
+  const [{ data, loading }] = useFetchData(
     newPost ? import.meta.env.VITE_POSTS_URL : null,
     {
       method: 'POST',
@@ -27,6 +27,8 @@ const FormAddPost = () => {
       body: JSON.stringify(newPost),
     }
   );
+
+  console.log(data)
 
   const onTextChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = event.currentTarget.value
@@ -49,7 +51,7 @@ const FormAddPost = () => {
   }
 
   useEffect(() => {
-    if (!loading && newPost) navigate('/', { replace: true });
+    if (!loading && newPost && data) navigate('/', { replace: true });
   }, [loading, newPost, navigate]);
 
   return (
