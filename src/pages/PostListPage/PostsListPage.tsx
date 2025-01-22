@@ -5,7 +5,7 @@ import { Loading, ErrorMessage, WidgetAddPost, ButtonShowAddForm, PostList } fro
 
 const PostListPage = () => {
   const url = import.meta.env.VITE_POSTS_URL;
-  const [fetchTrigget, setFetchTrigger] = useState<boolean | null>(null);
+  const [fetchTrigget, setFetchTrigger] = useState<number>(0);
   const [view, seView] = useState<boolean>(false);
 
 
@@ -14,17 +14,17 @@ const PostListPage = () => {
   const postsData = posts as TPost[];
 
   useEffect(() => {
-    if (!postsData.length) {
+    if (posts === null || !postsData.length) {
       console.log('Нет длины')
-      setFetchTrigger(true)
+      setFetchTrigger(prev => prev + 1)
     } 
 
-    if (postsData.length) {
+    if (posts && postsData.length) {
       console.log('Есть длина')
-      setFetchTrigger(null)
       seView(true)
     } 
-  }, [postsData]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [posts]);
 
   return (
     <>
