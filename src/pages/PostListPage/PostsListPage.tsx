@@ -14,7 +14,7 @@ const PostListPage = () => {
     if(state) setRequest(state.send);
   });
 
-  const [{ data: posts, loading, error }] = useFetchData(request && url);
+  const [{ data: posts, loading, error }] = useFetchData(url, {}, request);
 
   const postsData = posts as TPost[];
 

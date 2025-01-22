@@ -7,7 +7,7 @@ type FetchResult = {
   error: string | null,
 };
 
-export const useFetchData = (url: string | null, opts = {}, trigger?: number): [FetchResult] => {
+export const useFetchData = (url: string | null, opts = {}, trigger?: string | null): [FetchResult] => {
   const [data, setData] = useState<TPost | TPost[] | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
