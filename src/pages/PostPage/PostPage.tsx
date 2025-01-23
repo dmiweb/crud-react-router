@@ -39,16 +39,11 @@ const PostPage = () => {
       {post &&
         <div id={String(post.id)} className='post-item'>
           <PostItem post={{ id: 0, content: "", created: "" }} {...post} isLink={false} />
-
-
           <div className="options-post">
             <Button type='button' className='edit-post-btn' handler={onEdit}>Изменить</Button>
             <Button type='button' className='remove-post-btn' handler={onRemove}>Удалить</Button>
           </div>
         </div>}
-
-
-
     </>
   );
 };
