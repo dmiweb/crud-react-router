@@ -1,6 +1,6 @@
 const Loading = (): JSX.Element => {
   return (
-    <div>Загрузка...</div>
+    <div className="loading">Загрузка...</div>
   );
 };
 

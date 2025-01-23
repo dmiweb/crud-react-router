@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useFetchData } from "../../hooks/useFetchData";
-import { Form, Input, Button } from "../../components";
+import { Loading, Form, Input, Button } from "../../components";
 
 const FormEditPost = () => {
   const [postId, setpostId] = useState<number>(0);
@@ -19,7 +19,7 @@ const FormEditPost = () => {
     setPostContent(post.content)
   }, [location]);
 
-  const [{ loading }] = useFetchData(
+  const [{ loading, reqSuccess }] = useFetchData(
     editedPost ? url : null,
     {
       method: 'PUT',
@@ -44,27 +44,32 @@ const FormEditPost = () => {
   }
 
   useEffect(() => {
-    if (editedPost && !loading) navigate('/posts/' + postId, { replace: true });
-  }, [loading, editedPost, postId, navigate]);
+    if (editedPost && reqSuccess) navigate('/posts/' + postId, { replace: true });
+  }, [editedPost, postId, reqSuccess, navigate]);
 
   return (
-    <Form className='form-add-post' handler={onFormSubmit}>
-      <div className='add-post-img'></div>
+    <>
+      <Form className='form-add-post' handler={onFormSubmit}>
+        <div className='add-post-img'></div>
 
-      <Input
-        type="text"
-        className='add-post-input'
-        name='text'
-        defaultValue={postContent}
-      />
+        <Input
+          type="text"
+          className='add-post-input'
+          name='text'
+          defaultValue={postContent}
+        />
 
-      <Button
-        type='submit'
-        className='add-post-btn'
-        style={{ paddingLeft: '20px', paddingRight: '20px' }}>
-        Сохранить
-      </Button>
-    </Form>
+        <Button
+          type='submit'
+          className='add-post-btn'
+          style={{ paddingLeft: '20px', paddingRight: '20px' }}>
+          Сохранить
+        </Button>
+      </Form>
+
+      {loading && <Loading />}
+    </>
+
   );
 };
 

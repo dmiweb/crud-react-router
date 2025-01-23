@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useFetchData } from "../../hooks/useFetchData";
-import { Form, Input, Button } from "../../components";
+import { Loading, Form, Input, Button } from "../../components";
 
-const FormAddPost = async () => {
+const FormAddPost = () => {
   const [text, setText] = useState<string>('');
   const [savePost, setSavePost] = useState<string>('');
   const [newPost, setNewPost] = useState<{ id: number, content: string } | null>(null);
@@ -19,7 +19,7 @@ const FormAddPost = async () => {
     if (text) localStorage.setItem('save-form-add-post', text);
   }, [text]);
 
-  const [{ loading }] = useFetchData(
+  const [{ loading, reqSuccess }] = useFetchData(
     newPost ? import.meta.env.VITE_POSTS_URL : null,
     {
       method: 'POST',
@@ -49,26 +49,30 @@ const FormAddPost = async () => {
   }
 
   useEffect(() => {
-    if (newPost && !loading) navigate('/', { replace: true });
-  }, [loading, newPost, navigate]);
+    if (reqSuccess) navigate('/', { replace: true });
+  }, [reqSuccess, navigate]);
 
   return (
-    <Form className='form-add-post' handler={onFormSubmit}>
-      <div className='add-post-img'></div>
+    <>
+      <Form className='form-add-post' handler={onFormSubmit}>
+        <div className='add-post-img'></div>
 
-      <Input
-        type="text"
-        className='add-post-input'
-        name='text'
-        defaultValue={savePost}
-        handler={onTextChange}
-        placeholder='Начните ваш пост...'
-      />
+        <Input
+          type="text"
+          className='add-post-input'
+          name='text'
+          defaultValue={savePost}
+          handler={onTextChange}
+          placeholder='Начните ваш пост...'
+        />
 
-      <Button type='submit' className='add-post-btn'>
-        Опубликовать
-      </Button>
-    </Form>
+        <Button type='submit' className='add-post-btn'>
+          Опубликовать
+        </Button>
+      </Form>
+      
+      {loading && <Loading />}
+    </>
   );
 };
 
