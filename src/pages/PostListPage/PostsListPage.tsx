@@ -5,8 +5,7 @@ import {Loading, ErrorMessage, WidgetAddPost, ButtonShowAddForm, PostList} from 
 const PostListPage = () => {
   const url = import.meta.env.VITE_POSTS_URL;
   
-  // const [{ data: posts, loading, error }] = useFetchData(url);
-  // const [{ data: posts, loading, error }] = useFetchData(url);
+  const [{ data: posts, loading, error }] = useFetchData(url);
 
   const postsData: TPost[] = posts as TPost[];
 

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useFetchData } from "../../hooks/useFetchData";
 import { Form, Input, Button } from "../../components";
 
-const FormAddPost = () => {
+const FormAddPost = async () => {
   const [text, setText] = useState<string>('');
   const [savePost, setSavePost] = useState<string>('');
   const [newPost, setNewPost] = useState<{ id: number, content: string } | null>(null);
